@@ -3,7 +3,7 @@ body {
     color: #ffffff;
 }
 
-.movie-app > .row {
+.movie-app > {
     overflow-x: auto;
     flex-wrap: nowrap;
 }
@@ -33,3 +33,4 @@ body {
     padding: 20px;
     text-align: center;
 }
+
