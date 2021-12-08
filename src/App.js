@@ -5,6 +5,7 @@ import MovieList from './components/MovieList';
 import MovieListHeading from './components/MovieListHeading';
 import SearchBox from './components/SearchBox';
 import AddFavorites from './components/AddFavorites';
+import RemoveFavorites from './components/RemoveFavorites';
 
 
 const App = () => {
@@ -37,16 +38,21 @@ const App = () => {
         }
     }, []);
 
-    const saveToLocalStorage = (items) => {
-        localStorage.setItem('react-movie-app-favorites', JSON.stringify(items));
-    };
+
 
     const addFavoriteMovie = (movie) => {
         const newFavoriteList = [...favorites, movie];
         setFavorites(newFavoriteList);
-        saveToLocalStorage(newFavoriteList);
+
     };
 
+    const removeFavoriteMovie = (movie) => {
+        const newFavoriteList = favorites.filter(
+            (favorite) => favorite.imdbID !== movie.imdbID
+        );
+        setFavorites(newFavoriteList);
+
+    };
 
 
     return (
@@ -66,6 +72,13 @@ const App = () => {
                 <MovieListHeading heading='Favorites' />
             </div>
 
+            <div className='row'>
+                <MovieList
+                    movies={favorites}
+                    handleFavoritesClick={removeFavoriteMovie}
+                    favoriteComponent={RemoveFavorites}
+                />
+            </div>
         </div>
     );
 };
